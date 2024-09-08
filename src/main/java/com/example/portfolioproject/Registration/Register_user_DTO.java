@@ -1,35 +1,17 @@
-package com.example.portfolioproject.Entities;
+package com.example.portfolioproject.Registration;
 
-import jakarta.persistence.*;
+import com.example.portfolioproject.Entities.User;
 
-import java.util.UUID;
-
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    @Column(nullable = false, unique = true)
+public class Register_user_DTO {
     private String username;
-    @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    private User.Role role;
 
-    public enum Role{
-        ADMIN,
-        MANAGER,
-        TEAM_MEMBER
+    public Register_user_DTO() {
     }
 
-    public User() {
-    }
-
-    public User(String username, String email, String password, Role role) {
-        this.id = id;
+    public Register_user_DTO(String username, String email, String password, User.Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -38,21 +20,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+        return "Register_user_DTO{" +
+                "username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -79,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public User.Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(User.Role role) {
         this.role = role;
     }
 }
