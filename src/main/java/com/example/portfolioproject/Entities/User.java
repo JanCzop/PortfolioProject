@@ -2,6 +2,8 @@ package com.example.portfolioproject.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +20,8 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @ManyToMany(mappedBy = "users")
+    private Set<Project> projects = new HashSet<>();
 
     public enum Role{
         ADMIN,
@@ -29,7 +33,6 @@ public class User {
     }
 
     public User(String username, String email, String password, Role role) {
-        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -85,5 +88,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 }
