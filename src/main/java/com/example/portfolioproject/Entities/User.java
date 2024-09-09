@@ -23,7 +23,7 @@ public class User {
     private Role role;
     @ManyToMany(mappedBy = "users")
     private Set<Project> projects = new HashSet<>();
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Task> tasks = new HashSet<>();
 
     public enum Role{
