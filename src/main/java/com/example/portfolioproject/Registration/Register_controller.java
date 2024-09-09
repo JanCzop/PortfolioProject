@@ -19,8 +19,8 @@ public class Register_controller {
         this.register_service = register_service;
     }
     @PostMapping("/register")
-    public ResponseEntity<String> register_user(@RequestBody Register_user_DTO register_dto){
-        try{
+    public ResponseEntity<String> register_user(@RequestBody Register_user_DTO register_dto) {
+        try {
             User user = register_service.register_user(register_dto);
             return new ResponseEntity<>("Successfully registered user with ID: " + user.getId(), HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {

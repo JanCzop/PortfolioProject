@@ -1,6 +1,7 @@
 package com.example.portfolioproject.Registration;
 
 import com.example.portfolioproject.Entities.User;
+import com.example.portfolioproject.Exceptions.Exc_entity_already_exist;
 import com.example.portfolioproject.Repositories.User_repository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,7 @@ public class Register_service {
     public User register_user(Register_user_DTO register_dto){
         if (user_repository.findByUsername(register_dto.getUsername()).isPresent() ||
             user_repository.findByEmail(register_dto.getEmail()).isPresent())
-            throw new IllegalArgumentException("User with this username or email does exist!");
-
-        System.out.println(register_dto);
-
+            throw new Exc_entity_already_exist("User with this username or email already exists!");
         String hashed_password = password_encoder.encode(register_dto.getPassword());
 
         User user = new User(
