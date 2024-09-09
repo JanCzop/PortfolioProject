@@ -3,6 +3,7 @@ package com.example.portfolioproject.Entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,6 +23,8 @@ public class User {
     private Role role;
     @ManyToMany(mappedBy = "users")
     private Set<Project> projects = new HashSet<>();
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Task> tasks = new HashSet<>();
 
     public enum Role{
         ADMIN,
@@ -39,16 +42,7 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                '}';
-    }
+
 
     public UUID getId() {
         return id;
@@ -96,5 +90,13 @@ public class User {
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }

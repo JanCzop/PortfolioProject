@@ -19,16 +19,15 @@ public class Project_controller {
     }
 
     @PostMapping("create/blank")
-    public ResponseEntity<String> create_blank_project(@RequestBody Project_DTO project_dto) {
+    public ResponseEntity<Project> create_blank_project(@RequestBody Project_DTO project_dto) {
         Project project = project_service.create_blank_project(project_dto);
-        return new ResponseEntity<>("Successfully created Project with ID: " + project.getId(), HttpStatus.CREATED);
+        return new ResponseEntity<>(project, HttpStatus.CREATED);
     }
 
     @PostMapping("create/managed")
-    public ResponseEntity<String> create_managed_project(@RequestBody Project_DTO project_dto, @RequestParam UUID manager_id) {
+    public ResponseEntity<Project> create_managed_project(@RequestBody Project_DTO project_dto, @RequestParam UUID manager_id) {
         Project project = project_service.create_managed_project(project_dto, manager_id);
-        return new ResponseEntity<>("Successfully created Project with ID: " + project.getId() +
-                " and set its manager with ID: " + manager_id, HttpStatus.CREATED);
+        return new ResponseEntity<>(project, HttpStatus.CREATED);
     }
 
     @GetMapping("/{project_id}")
@@ -44,9 +43,9 @@ public class Project_controller {
     }
 
     @PutMapping("/{project_id}")
-    public ResponseEntity<String> update_project(@PathVariable Long project_id, @RequestBody Project_DTO project_dto) {
+    public ResponseEntity<Project> update_project(@PathVariable Long project_id, @RequestBody Project_DTO project_dto) {
         Project project = project_service.update_project(project_id, project_dto);
-        return new ResponseEntity<>("Successfully updated Project with ID: " + project.getId(), HttpStatus.OK);
+        return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
     @DeleteMapping("/{project_id}")

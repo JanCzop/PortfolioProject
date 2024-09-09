@@ -18,6 +18,7 @@ public class Register_service {
     }
 
     public User register_user(Register_user_DTO register_dto){
+        if (!register_dto.validate_DTO()) throw new IllegalArgumentException("There are missing arguments!");
         if (user_repository.findByUsername(register_dto.getUsername()).isPresent() ||
             user_repository.findByEmail(register_dto.getEmail()).isPresent())
             throw new Exc_entity_already_exist("User with this username or email already exists!");

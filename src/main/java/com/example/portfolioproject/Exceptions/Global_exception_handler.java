@@ -23,7 +23,7 @@ public class Global_exception_handler {
     }
 
     @ExceptionHandler(Exc_entity_already_exist.class)
-    public ResponseEntity<String> handleEntityAlreadyExists(Exc_entity_already_exist ex) {
+    public ResponseEntity<String> handle_entity_already_exists(Exc_entity_already_exist ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 

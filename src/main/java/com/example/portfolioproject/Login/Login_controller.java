@@ -26,6 +26,7 @@ public class Login_controller {
 
     @PostMapping
     public ResponseEntity<String> login_user(@RequestBody Login_DTO login_dto){
+        if(!login_dto.validate_DTO()) throw new IllegalArgumentException("There are missing arguments");
         User user = user_repository.findByUsername(login_dto.getUsername())
                 .orElseThrow(() -> new Exc_entity_not_found("User with username " + login_dto.getUsername() + " does not exist!"));
         if (!password_encoder.matches(login_dto.getPassword(), user.getPassword()))

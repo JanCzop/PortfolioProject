@@ -1,6 +1,8 @@
 package com.example.portfolioproject.Login;
 
-public class Login_DTO {
+import com.example.portfolioproject.Entities.Entity_DTO_validator;
+
+public class Login_DTO implements Entity_DTO_validator {
     private String username;
     private String password;
 
@@ -20,6 +22,11 @@ public class Login_DTO {
                 '}';
     }
 
+    @Override
+    public boolean validate_DTO() {
+        return username != null && password != null;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -35,4 +42,5 @@ public class Login_DTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

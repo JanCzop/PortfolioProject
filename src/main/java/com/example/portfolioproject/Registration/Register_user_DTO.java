@@ -1,8 +1,9 @@
 package com.example.portfolioproject.Registration;
 
+import com.example.portfolioproject.Entities.Entity_DTO_validator;
 import com.example.portfolioproject.Entities.User;
 
-public class Register_user_DTO {
+public class Register_user_DTO implements Entity_DTO_validator {
     private String username;
     private String email;
     private String password;
@@ -26,6 +27,13 @@ public class Register_user_DTO {
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public boolean validate_DTO() {
+        return username != null &&
+                email != null &&
+                password != null;
     }
 
     public String getUsername() {

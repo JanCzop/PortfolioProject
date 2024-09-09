@@ -59,7 +59,7 @@ public class Project_service {
         project.setName(project_dto.getName());
         project.setDescription(project_dto.getDescription());
         project.setStart_date(project_dto.getStart_date());
-        project.setEnd_date(project_dto.getEnd_date());
+        project.setDue_date(project_dto.getEnd_date());
         project.setPriority(project_dto.getPriority());
         return project_repository.save(project);
     }
