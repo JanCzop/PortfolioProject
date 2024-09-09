@@ -2,6 +2,7 @@ package com.example.portfolioproject.Registration;
 
 import com.example.portfolioproject.Entities.User;
 import com.example.portfolioproject.Exceptions.Exc_entity_already_exist;
+import com.example.portfolioproject.Exceptions.Exc_null_data;
 import com.example.portfolioproject.Repositories.User_repository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,8 @@ public class Register_service {
     }
 
     public User register_user(Register_user_DTO register_dto){
-        if (!register_dto.validate_DTO()) throw new IllegalArgumentException("There are missing arguments!");
+        if(register_dto == null) throw new Exc_null_data("User is null!");
+        if (!register_dto.validate_DTO()) throw new IllegalArgumentException("There are invalid arguments!");
         if (user_repository.findByUsername(register_dto.getUsername()).isPresent() ||
             user_repository.findByEmail(register_dto.getEmail()).isPresent())
             throw new Exc_entity_already_exist("User with this username or email already exists!");

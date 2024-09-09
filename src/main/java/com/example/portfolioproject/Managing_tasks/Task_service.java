@@ -9,10 +9,12 @@ import com.example.portfolioproject.Repositories.Project_repository;
 import com.example.portfolioproject.Repositories.Task_repository;
 import com.example.portfolioproject.Repositories.User_repository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class Task_service {
 
     private final Task_repository task_repository;

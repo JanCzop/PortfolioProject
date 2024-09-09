@@ -3,7 +3,13 @@ package com.example.portfolioproject.Registration;
 import com.example.portfolioproject.Entities.Entity_DTO_validator;
 import com.example.portfolioproject.Entities.User;
 
+import java.util.regex.Pattern;
+
 public class Register_user_DTO implements Entity_DTO_validator {
+
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final Pattern USERNAME_PATTERN = Pattern.compile("^[a-zA-Z0-9]{5,}$");
+
     private String username;
     private String email;
     private String password;
@@ -31,10 +37,21 @@ public class Register_user_DTO implements Entity_DTO_validator {
 
     @Override
     public boolean validate_DTO() {
-        return username != null &&
-                email != null &&
-                password != null;
+        return validate_email() && validate_username() && validate_password();
     }
+
+    private boolean validate_email() {
+        return email != null && EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    private boolean validate_username() {
+        return username != null && USERNAME_PATTERN.matcher(username).matches();
+    }
+
+    private boolean validate_password() {
+        return password != null && password.length() >= 5;
+    }
+
 
     public String getUsername() {
         return username;
