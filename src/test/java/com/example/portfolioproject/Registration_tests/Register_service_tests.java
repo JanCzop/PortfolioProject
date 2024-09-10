@@ -76,7 +76,7 @@ public class Register_service_tests {
         assertTrue(result instanceof IllegalArgumentException);
     }
     @Test
-    public void test_register_user_FAILURE_null_fields_argument(){
+    public void test_register_user_FAILURE_null_fields_data(){
         Register_user_DTO dto = new Register_user_DTO(null,null,null, null);
         Exception result = null;
         try{
@@ -88,11 +88,10 @@ public class Register_service_tests {
         assertTrue(result instanceof IllegalArgumentException);
     }
     @Test
-    public void test_register_user_FAILURE_null_object(){
-        Register_user_DTO dto = null;
+    public void test_register_user_FAILURE_null_data(){
         Exception result = null;
         try{
-            register_service.register_user(dto);
+            register_service.register_user(null);
         } catch (Exception e){
             result = e;
         }
