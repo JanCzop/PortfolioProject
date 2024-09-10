@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.WebRequest;
 
 @TestConfiguration
+
+// will be used later
 public class Test_config{
         @Bean
         public Global_exception_handler globalExceptionHandler() {
